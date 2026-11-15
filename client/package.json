@@ -1,0 +1,12 @@
+{
+  "name": "sql-12-paris-airbnb-client",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Paris Airbnb - the finished frontend. Serves public/ and forwards /api to the server. Do not change it.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

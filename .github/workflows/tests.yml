@@ -1,0 +1,41 @@
+name: Tests
+
+on: [push, pull_request, workflow_dispatch]
+
+# GitHub can't reach the course server, so the tests run against a SQL Server container
+# with a sample of the table (server/tests/seed.js). The password is only for this temporary container.
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: "Ci_Only_Pass_2026!"
+        ports:
+          - 1433:1433
+    env:
+      DB_SERVER: localhost
+      DB_PORT: 1433
+      DB_USER: sa
+      DB_PASSWORD: "Ci_Only_Pass_2026!"
+      DB_NAME: paris_airbnb
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Wait for SQL Server and create the sample table
+        run: |
+          for i in $(seq 1 30); do
+            node tests/seed.js && exit 0
+            echo "SQL Server is still starting... ($i)"
+            sleep 5
+          done
+          exit 1
+      - run: npm test

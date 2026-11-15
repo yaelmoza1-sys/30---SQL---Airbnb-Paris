@@ -1,0 +1,21 @@
+{
+  "name": "sql-12-paris-airbnb-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Paris Airbnb - Express backend that reads listings from SQL Server (Router -> Controller -> DAL)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test --test-concurrency=1 --test-reporter=./tests/reporter.mjs tests/architecture.test.js tests/step1-connect.test.js tests/step2-listings.test.js tests/step3-details.test.js tests/step4-hosts.test.js",
+    "seed": "node tests/seed.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mssql": "^12.7.14"
+  }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>parisstays · Places to stay in Paris</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-row">
+      <a class="logo" href="#/" aria-label="parisstays home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2.5 6.5 29.5h4.2l1.6-4.6h7.4l1.6 4.6h4.2L16 2.5Zm-2.4 18.6L16 14l2.4 7.1h-4.8Z"/><path d="M9.6 12.6h12.8v2.8H9.6z"/></svg>
+        <span>parisstays</span>
+      </a>
+
+      <form id="search-form" class="search" autocomplete="off">
+        <label class="search-field">
+          <span class="search-label">Where</span>
+          <select id="neighbourhood">
+            <option value="">All of Paris</option>
+          </select>
+        </label>
+        <span class="search-divider"></span>
+        <div class="search-field price-field">
+          <span class="search-label">Price per night</span>
+          <div class="price-inputs">
+            <input id="min-price" type="number" min="0" placeholder="€ min" aria-label="Minimum price">
+            <span>–</span>
+            <input id="max-price" type="number" min="0" placeholder="€ max" aria-label="Maximum price">
+          </div>
+        </div>
+        <span class="search-divider"></span>
+        <label class="search-field">
+          <span class="search-label">Sort by</span>
+          <select id="sort">
+            <option value="price">Lowest price</option>
+            <option value="rating">Top rated</option>
+          </select>
+        </label>
+        <button class="search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13 24a11 11 0 1 0 0-22 11 11 0 0 0 0 22zm8-3 9 9" fill="none" stroke="currentColor" stroke-width="4"/></svg>
+          <span>Search</span>
+        </button>
+      </form>
+
+      <div class="header-actions">
+        <span class="header-link">Paris, France</span>
+        <span class="avatar-pill" aria-hidden="true">
+          <svg viewBox="0 0 32 32"><path d="M2 16h28M2 24h28M2 8h28" stroke="currentColor" stroke-width="3" fill="none"/></svg>
+          <span class="avatar-dot">P</span>
+        </span>
+      </div>
+    </div>
+
+    <nav class="categories" id="categories" aria-label="Room type">
+      <button class="category active" data-room-type="" type="button">
+        <svg viewBox="0 0 32 32"><path d="M4 28V12l12-8 12 8v16H4zm8 0v-9h8v9" /></svg>
+        <span>All stays</span>
+      </button>
+      <button class="category" data-room-type="Entire home/apt" type="button">
+        <svg viewBox="0 0 32 32"><path d="M3 14 16 4l13 10M6 12v16h20V12M13 28v-8h6v8" /></svg>
+        <span>Entire homes</span>
+      </button>
+      <button class="category" data-room-type="Private room" type="button">
+        <svg viewBox="0 0 32 32"><path d="M7 29V4h18v25M4 29h24M20 17h1" /></svg>
+        <span>Private rooms</span>
+      </button>
+      <button class="category" data-room-type="Hotel room" type="button">
+        <svg viewBox="0 0 32 32"><path d="M5 29V3h14v26M19 11h8v18M3 29h26M9 8h2M13 8h2M9 13h2M13 13h2M9 18h2M13 18h2M23 16h1M23 21h1" /></svg>
+        <span>Hotel rooms</span>
+      </button>
+      <button class="category" data-room-type="Shared room" type="button">
+        <svg viewBox="0 0 32 32"><path d="M3 25V9M3 18h26v7M29 18v-3a4 4 0 0 0-4-4H15v7M9 14a2.5 2.5 0 1 0 0-.1" /></svg>
+        <span>Shared rooms</span>
+      </button>
+      <label class="limit-picker">
+        <span>Show</span>
+        <select id="limit">
+          <option value="20">20 stays</option>
+          <option value="50">50 stays</option>
+        </select>
+      </label>
+    </nav>
+  </header>
+
+  <main>
+    <!-- The list of cards -->
+    <section id="list-view">
+      <div class="results-head">
+        <h1 id="results-title">Places to stay in Paris</h1>
+        <p id="results-subtitle" class="muted"></p>
+      </div>
+      <div id="message" class="message" hidden></div>
+      <div id="results" class="grid" aria-live="polite"></div>
+    </section>
+
+    <!-- One place (opens on #/listing/<id>) -->
+    <section id="details" class="details" hidden></section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© parisstays · Full-Stack course A656 · Data: Inside Airbnb (Paris)</span>
+    <span class="muted">Read-only demo - nothing can be booked</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
